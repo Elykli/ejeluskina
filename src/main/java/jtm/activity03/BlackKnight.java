@@ -1,5 +1,6 @@
 package jtm.activity03;
-
+import java.util.Arrays;
+import java.util.ArrayList;
 /**
  * Black Knight is brave soldier who fights till he is alive. He doesn't bother
  * if some of his arms or legs are cut off. You can kill him only when he lose
@@ -22,6 +23,9 @@ public class BlackKnight {
 	public static void setBattle(int initialNumber) {
 		// TODO initialize array of knights with the passed size.
 		// Reset total numbers of total and alive knights to zero
+		knights = new BlackKnight[initialNumber];
+		totalKnights = 0;
+		aliveKnights = 0;
 	}
 
 	public BlackKnight(String name) {
@@ -33,34 +37,90 @@ public class BlackKnight {
 		// 4. increase number of total and alive knights of static counters
 		// HINT: use "this.name" to access name of knight which otherwise is shadowed
 		// by parameter of constructor, which is also called "name"
+		this.name = name;
+		this.arms = 2;
+		this.legs = 2;
+		this.head = 1;
+		alive = true;
+		
+		for (int i = 0; i < knights.length; i++) {
+			if (knights [i] == null) {
+				knights [i] = this;
+				break;
+			}
+		}
+
+		totalKnights ++;
+		aliveKnights ++;
+		
 	}
 
 	public String cutOffArm() {
 		// TODO handle cutting off knight's arms in following way:
 		// If knight is dead, return "Only chicken beats dead!"
+		
+		if (!alive) {
+			return  "Only chicken beats dead!";
+		}
+		
 		// If knight has some arms, cut one off and return "Bugger!"
+
+		if(arms > 0) {
+			arms --;
+			return "Bugger!";
+		 
 		// Else return just "Haah!"
-		return "";
+		}
+		return "Haah!";
+		
 	}
 
 	public String cutOffLeg() {
 		// TODO handle cutting off legs knight's legs in following way:
 		// If knight is dead, return "Only chicken beats dead!"
+		if(!alive) {
+			return "Only chicken beats dead!"; 
+		}
 		// If knight has some legs, cut one off and return "Bollocks!"
+		if(legs > 0) {
+			legs --;
+			return "Bollocks!";
+		}
 		// Else return just "Haah!"
-		return "";
+		return "Haah!";
 	}
 
 	public String cutOffHead() {
 		// TODO handle cutting off knight's head in following way:
 		// If knight is dead, return "Only chicken beats dead!"
+		if(!alive) {
+			
+		}
+		return "Only chicken beats dead!";
 		// If knight is alive and has head, cut it off and update
 		// number of total alive and dead knights and then
+//		if (alive && head == 1) {
+//			head = 0;
+//			alive = false;
+//			aliveKnights --;
+//			deadKnights ++;
+//		}
 		// If there are other knights alive return:
 		// "You'l newer win! Arthur, Cnut will still fight!"
 		// Where "Arthur, Cnut" are names of still alive knights
 		// Else return "You'l burn in hell forever!"
-		return "";
-	}
+//		if (aliveKnights > 0) {
+//			StringBuffer aliveKnightName = new StringBuffer();
+//			for(BlackKnight knight : knights) {
+//				if(knight.alive) {
+//					aliveKnightName.append(knight.name);
+//				}
+//			}
+//			aliveKnightName.setLength(aliveKnightName.length() - 2);
+//			return "You'l newer win! Arthur, Cnut will still fight!";
+//		}else {
+//		return "You'l burn in hell forever!";
+//		}
+}
 
 }
