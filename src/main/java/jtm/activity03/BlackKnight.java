@@ -58,21 +58,16 @@ public class BlackKnight {
 	public String cutOffArm() {
 		// TODO handle cutting off knight's arms in following way:
 		// If knight is dead, return "Only chicken beats dead!"
-		
+		// If knight has some arms, cut one off and return "Bugger!"
+		// Else return just "Haah!"
 		if (!alive) {
 			return  "Only chicken beats dead!";
-		}
-		
-		// If knight has some arms, cut one off and return "Bugger!"
-
-		if(arms > 0) {
+		}else if(arms > 0) {
 			arms --;
 			return "Bugger!";
-		 
-		// Else return just "Haah!"
-		}
+		}else {
 		return "Haah!";
-		
+		}
 	}
 
 	public String cutOffLeg() {
@@ -82,45 +77,47 @@ public class BlackKnight {
 			return "Only chicken beats dead!"; 
 		}
 		// If knight has some legs, cut one off and return "Bollocks!"
-		if(legs > 0) {
+		else if(legs > 0) {
 			legs --;
 			return "Bollocks!";
-		}
+		}else {
 		// Else return just "Haah!"
 		return "Haah!";
+		}
 	}
 
 	public String cutOffHead() {
 		// TODO handle cutting off knight's head in following way:
 		// If knight is dead, return "Only chicken beats dead!"
 		if(!alive) {
-			
+			return "Only chicken beats dead!";	
 		}
-		return "Only chicken beats dead!";
+		
 		// If knight is alive and has head, cut it off and update
 		// number of total alive and dead knights and then
-//		if (alive && head == 1) {
-//			head = 0;
-//			alive = false;
-//			aliveKnights --;
-//			deadKnights ++;
-//		}
+		if (alive && head == 1) {
+			head = 0;
+			alive = false;
+			aliveKnights --;
+			deadKnights ++;
+		}
 		// If there are other knights alive return:
 		// "You'l newer win! Arthur, Cnut will still fight!"
 		// Where "Arthur, Cnut" are names of still alive knights
 		// Else return "You'l burn in hell forever!"
-//		if (aliveKnights > 0) {
-//			StringBuffer aliveKnightName = new StringBuffer();
-//			for(BlackKnight knight : knights) {
-//				if(knight.alive) {
-//					aliveKnightName.append(knight.name);
-//				}
-//			}
-//			aliveKnightName.setLength(aliveKnightName.length() - 2);
-//			return "You'l newer win! Arthur, Cnut will still fight!";
-//		}else {
-//		return "You'l burn in hell forever!";
-//		}
-}
+		 if (aliveKnights > 0) {
+			StringBuilder aliveKnightName = new StringBuilder();
+			for(BlackKnight knight : knights) {
+				if(knight.alive) {
+					aliveKnightName.append(knight.name + ", ");
+				}
+			}
+			aliveKnightName.setLength(aliveKnightName.length() -2);
+			return "You'l newer win!" + aliveKnightName.toString() +  "will still fight!";
+		}else {
+			return "You'l burn in hell forever!";
+		}
+		
+	}
 
 }
