@@ -1,5 +1,7 @@
 package jtm.activity04;
 
+
+
 public class Road {
 	private String from; // Start point
 	private String to; // End point
